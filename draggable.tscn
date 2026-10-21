@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bq5u2lmh5ckdu"]
+
+[ext_resource type="Script" uid="uid://c75n0wf3chvq2" path="res://draggable.gd" id="1_law6f"]
+[ext_resource type="Texture2D" uid="uid://berlsj3h2egdc" path="res://icon.svg" id="2_law6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxuq"]
+size = Vector2(120, 120)
+
+[node name="Draggable" type="Node2D" unique_id=864203904]
+script = ExtResource("1_law6f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=234564019]
+texture = ExtResource("2_law6f")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=408571656]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=811720620]
+shape = SubResource("RectangleShape2D_4kxuq")
+
+[node name="Button" type="Button" parent="." unique_id=313687336]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c00n0m2ulv3e8"]
+
+[ext_resource type="PackedScene" uid="uid://bq5u2lmh5ckdu" path="res://draggable.tscn" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://berlsj3h2egdc" path="res://icon.svg" id="2_0e48y"]
+
+[sub_resource type="GDScript" id="GDScript_4kxuq"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.get_parent().held:
+		area.get_parent().queue_free()
+
+func _on_area_exited(area: Area2D) -> void:
+	print(\"%s Exited\" % area.get_parent().name)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4kxuq"]
+radius = 90.0
+
+[node name="Node2D" type="Node2D" unique_id=871648571]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=79858237]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1050043441]
+script = SubResource("GDScript_4kxuq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2090311232]
+shape = SubResource("CircleShape2D_4kxuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1930985313]
+self_modulate = Color(0, 0.50833756, 0.27879468, 1)
+texture = ExtResource("2_0e48y")
+
+[node name="Draggable" parent="." unique_id=864203904 instance=ExtResource("1_wtcfe")]
+position = Vector2(-272, -40)
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="Area2D" method="_on_area_exited"]
