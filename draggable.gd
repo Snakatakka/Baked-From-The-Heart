@@ -30,10 +30,11 @@ func _handle_vars() -> void:
 		sprite.texture = sprite_texture
 
 func _handle_color() -> void:
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint(): # Only makes the button transparent when the games running, for reasons.
 			button.self_modulate = Color.hex(0x0000ff)
 		else:
 			button.self_modulate = Color.hex(0x000000)
 
 func _on_button_pressed() -> void:
 	held = !held
+	print(name)
